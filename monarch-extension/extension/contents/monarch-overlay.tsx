@@ -494,7 +494,7 @@ const MonarchOverlay = () => {
             {isEligible && (
               <div style={{ padding: "0 14px 12px" }}>
                 <button
-                  onClick={() => window.open(`https://monarch-web.vercel.app/quiz/${state.videoId}?title=${encodeURIComponent(state.videoTitle)}`, "_blank")}
+                  onClick={() => window.open(`https://monarch.yolkone.com/quiz/${state.videoId}?title=${encodeURIComponent(state.videoTitle)}`, "_blank")}
                   style={{
                     width: "100%",
                     padding: "10px",

@@ -1,7 +1,7 @@
 import type { PlasmoCSConfig } from "plasmo"
 
 export const config: PlasmoCSConfig = {
-  matches: ["http://localhost:3000/*", "https://monarch-web.vercel.app/*"],
+  matches: ["http://localhost:3000/*", "https://monarch.yolkone.com/*"],
   run_at: "document_idle"
 }
 
