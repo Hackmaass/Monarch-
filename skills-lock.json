@@ -6,6 +6,12 @@
       "sourceType": "github",
       "skillPath": "SKILL.md",
       "computedHash": "86e4bfac83409f9ec29dbfd4beafa49717bdfe50b836bc997c1891ad197fac2b"
+    },
+    "wallet-integration": {
+      "source": "therealharpaljadeja/monskills",
+      "sourceType": "github",
+      "skillPath": "wallet-integration/SKILL.md",
+      "computedHash": "de257b6c2655626b270b77e634cdd793209dad868c85023b7f524b857916fa1e"
     }
   }
 }
