@@ -151,9 +151,9 @@ export default function LandingPage() {
         </div>
         <div className="md:w-1/2 flex justify-center md:justify-end relative">
           <img 
-            src="/images/homepage/hero-illustration.png" 
-            alt="Monarch Architecture Diagram" 
-            className="w-full max-w-[560px] h-auto object-contain transition-transform duration-700 hover:scale-[1.01] dark:invert" 
+            src="/images/homepage/monarch-dashboard.png" 
+            alt="Monarch Dashboard" 
+            className="w-full max-w-[560px] h-auto object-contain transition-transform duration-700 hover:scale-[1.01] rounded-2xl shadow-[0_0_40px_rgba(255,255,255,0.1)]" 
           />
         </div>
       </section>
@@ -173,9 +173,9 @@ export default function LandingPage() {
           </div>
           <div className="flex justify-center -mb-16 md:-mb-28">
             <img 
-              src={isDark ? "/images/homepage/trackYourReadingDark.png" : "/images/homepage/trackYourReading.png"} 
+              src="/images/homepage/monarch-dashboard.png" 
               alt="Learning credibility verification dashboard" 
-              className="w-[90%] max-w-[860px] h-auto object-contain transition-transform duration-500 hover:scale-[1.02]" 
+              className="w-[90%] max-w-[860px] h-auto object-contain transition-transform duration-500 hover:scale-[1.02] rounded-t-2xl shadow-[0_-10px_40px_rgba(255,255,255,0.05)] border-t border-white/10" 
             />
           </div>
         </div>
@@ -194,9 +194,9 @@ export default function LandingPage() {
             </div>
             <div className="flex justify-center -mb-56 md:-mb-64">
               <img 
-                src={isDark ? "/images/homepage/discoverBooksDark.png" : "/images/homepage/discoverBooks.png"} 
+                src="/images/homepage/monarch-analytics.png" 
                 alt="Platform integrations" 
-                className="w-full max-w-[280px] h-auto object-contain transition-transform duration-500 hover:scale-[1.02]" 
+                className="w-full max-w-[280px] h-auto object-contain transition-transform duration-500 hover:scale-[1.02] rounded-t-2xl shadow-[0_-10px_40px_rgba(255,255,255,0.05)] border-t border-white/10" 
               />
             </div>
           </div>
@@ -205,9 +205,9 @@ export default function LandingPage() {
           <div className="bg-[#F3F4F4] dark:bg-[#111111] rounded-[28px] overflow-hidden flex flex-col justify-between pb-12 pt-0 border border-black/2 shadow-xs">
             <div className="flex justify-center -mt-56 md:-mt-64 mb-6">
               <img 
-                src={isDark ? "/images/homepage/setReadingGoalDark.png" : "/images/homepage/setReadingGoal.png"} 
+                src="/images/homepage/monarch-tracking.png" 
                 alt="Trust score metrics" 
-                className="w-full max-w-[280px] h-auto object-contain transition-transform duration-500 hover:scale-[1.02]" 
+                className="w-full max-w-[280px] h-auto object-contain transition-transform duration-500 hover:scale-[1.02] rounded-b-2xl shadow-[0_10px_40px_rgba(255,255,255,0.05)] border-b border-white/10" 
               />
             </div>
             <div className="px-6 text-center">
@@ -233,9 +233,9 @@ export default function LandingPage() {
           </div>
           <div className="flex justify-center -mb-20 md:-mb-36">
             <img 
-              src={isDark ? "/images/homepage/unlockStatsDark.png" : "/images/homepage/unlockStats.png"} 
+              src="/images/homepage/monarch-dashboard.png" 
               alt="Learning credibility analytics" 
-              className="w-[90%] max-w-[860px] h-auto object-contain transition-transform duration-500 hover:scale-[1.02]" 
+              className="w-[90%] max-w-[860px] h-auto object-contain transition-transform duration-500 hover:scale-[1.02] rounded-t-2xl shadow-[0_-10px_40px_rgba(255,255,255,0.05)] border-t border-white/10" 
             />
           </div>
         </div>
@@ -254,9 +254,9 @@ export default function LandingPage() {
             </div>
             <div className="flex justify-center -mb-40 md:-mb-44">
               <img 
-                src={isDark ? "/images/homepage/createCollectionsDark.png" : "/images/homepage/createCollections.png"} 
+                src="/images/homepage/monarch-analytics.png" 
                 alt="Blockchain certificate minting" 
-                className="w-full max-w-[280px] h-auto object-contain transition-transform duration-500 hover:scale-[1.02]" 
+                className="w-full max-w-[280px] h-auto object-contain transition-transform duration-500 hover:scale-[1.02] rounded-t-2xl shadow-[0_-10px_40px_rgba(255,255,255,0.05)] border-t border-white/10" 
               />
             </div>
           </div>
@@ -273,9 +273,9 @@ export default function LandingPage() {
             </div>
             <div className="flex justify-center -mb-28 md:-mb-36">
               <img 
-                src={isDark ? "/images/homepage/readReviewsDark.png" : "/images/homepage/readReviews.png"} 
+                src="/images/homepage/monarch-tracking.png" 
                 alt="Recruiter verification portal" 
-                className="w-full max-w-[340px] h-auto object-contain transition-transform duration-500 hover:scale-[1.02]" 
+                className="w-full max-w-[340px] h-auto object-contain transition-transform duration-500 hover:scale-[1.02] rounded-t-2xl shadow-[0_-10px_40px_rgba(255,255,255,0.05)] border-t border-white/10" 
               />
             </div>
           </div>
