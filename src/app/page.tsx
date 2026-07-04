@@ -73,7 +73,7 @@ export default function LandingPage() {
           <nav className="hidden md:flex items-center gap-8 text-sm font-medium text-[#46474E] dark:text-gray-300">
             <Link href="#features" className="hover:text-black dark:hover:text-white transition-colors">Features</Link>
             <Link href="#how-it-works" className="hover:text-black dark:hover:text-white transition-colors">How It Works</Link>
-            <Link href="https://github.com/Sarthak030506/learncert-hackmumbai" target="_blank" className="hover:text-black dark:hover:text-white transition-colors flex items-center gap-1">
+            <Link href="https://github.com/Hackmaass/Monarch-" target="_blank" className="hover:text-black dark:hover:text-white transition-colors flex items-center gap-1">
               GitHub <ExternalLink className="w-3 h-3" />
             </Link>
             <Link href="mailto:tejasgodse.tech@gmail.com" className="hover:text-black dark:hover:text-white transition-colors">Contact</Link>
@@ -109,7 +109,7 @@ export default function LandingPage() {
           <nav className="flex flex-col gap-6 text-xl font-normal text-black dark:text-white mt-8">
             <Link href="#features" onClick={() => setMobileMenuOpen(false)} className="hover:opacity-75">Features</Link>
             <Link href="#how-it-works" onClick={() => setMobileMenuOpen(false)} className="hover:opacity-75">How It Works</Link>
-            <Link href="https://github.com/Sarthak030506/learncert-hackmumbai" target="_blank" className="hover:opacity-75 flex items-center gap-1.5">
+            <Link href="https://github.com/Hackmaass/Monarch-" target="_blank" className="hover:opacity-75 flex items-center gap-1.5">
               GitHub <ExternalLink className="w-4 h-4" />
             </Link>
             <Link href="mailto:tejasgodse.tech@gmail.com" className="hover:opacity-75">Contact</Link>
@@ -421,7 +421,7 @@ export default function LandingPage() {
           <div className="flex flex-wrap justify-center gap-6 text-[#46474E] dark:text-gray-300 font-medium text-sm z-10">
             <Link href="#features" className="hover:text-black dark:hover:text-white transition-colors">Features</Link>
             <Link href="#how-it-works" className="hover:text-black dark:hover:text-white transition-colors">How It Works</Link>
-            <Link href="https://github.com/Sarthak030506/learncert-hackmumbai" target="_blank" className="hover:text-black dark:hover:text-white transition-colors">GitHub</Link>
+            <Link href="https://github.com/Hackmaass/Monarch-" target="_blank" className="hover:text-black dark:hover:text-white transition-colors">GitHub</Link>
             <Link href="mailto:tejasgodse.tech@gmail.com" className="hover:text-black dark:hover:text-white transition-colors">Contact</Link>
           </div>
 

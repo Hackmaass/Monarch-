@@ -4,8 +4,8 @@ import { ethers } from "ethers";
 
 const CONTRACT_ADDRESS = "0x0A3769Ada9cBA047678998293D3cE25f04C397DB";
 
-// LearnCert ABI — only the mint function needed
-const LEARNCERT_ABI = [
+// Monarch ABI — only the mint function needed
+const MONARCH_ABI = [
   "function mint(address recipient, string memory courseName, uint8 score) public returns (uint256)",
 ];
 
@@ -25,7 +25,7 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: "Course name required" }, { status: 400 });
     }
 
-    const privateKey = process.env.LEARNCERT_PRIVATE_KEY;
+    const privateKey = process.env.MONARCH_PRIVATE_KEY;
 
     if (!privateKey) {
       // Demo mode — return a simulated successful response
@@ -48,7 +48,7 @@ export async function POST(req: NextRequest) {
 
     const provider = new ethers.JsonRpcProvider("https://sepolia.base.org");
     const signer = new ethers.Wallet(privateKey, provider);
-    const iface = new ethers.Interface(LEARNCERT_ABI);
+    const iface = new ethers.Interface(MONARCH_ABI);
 
     const safeScore = Math.min(100, Math.max(0, Math.floor(score)));
     const encodedData = iface.encodeFunctionData("mint", [

@@ -212,7 +212,7 @@ function ClaimContent() {
                     Certificate Minted!
                   </p>
                   <p className="text-[11px] text-white/40 font-medium mt-1">
-                    Token #{tokenId} · {isDemo ? "Demo mode — no LEARNCERT_PRIVATE_KEY set" : "On-chain · Monad Testnet"}
+                    Token #{tokenId} · {isDemo ? "Demo mode — no MONARCH_PRIVATE_KEY set" : "On-chain · Monad Testnet"}
                   </p>
                 </div>
               </div>
