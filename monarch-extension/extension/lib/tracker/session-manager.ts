@@ -36,6 +36,12 @@ export class SessionManager {
       await this.endSession()
     }
 
+    // Try to get saved wallet address from popup
+    const savedWallet = await this.storage.get<string>(STORAGE_KEYS.WALLET_ADDRESS)
+    if (savedWallet) {
+      this.userId = savedWallet
+    }
+
     // Create new session
     this.currentSession = {
       id: generateSessionId(),
@@ -99,7 +105,7 @@ export class SessionManager {
 
     console.log(
       `[Monarch] Session ended: ${finishedSession.video.title} ` +
-        `(watched ${Math.round(finishedSession.totalWatchTime)}s / ${Math.round(finishedSession.video.duration)}s)`
+      `(watched ${Math.round(finishedSession.totalWatchTime)}s / ${Math.round(finishedSession.video.duration)}s)`
     )
 
     // Cleanup

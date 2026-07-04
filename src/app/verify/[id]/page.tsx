@@ -205,7 +205,7 @@ function VerificationContent() {
                 <div className="p-6 rounded-[24px] bg-white/[0.02] border border-white/[0.03] space-y-5">
                   <div className="flex justify-between items-center text-[10px] font-black uppercase tracking-widest">
                     <span className="text-white/20">NETWORK</span>
-                    <span className="text-white">BASE SEPOLIA</span>
+                    <span className="text-white">MONAD TESTNET</span>
                   </div>
                   <div className="flex justify-between items-center text-[10px] font-black uppercase tracking-widest">
                     <span className="text-white/20">CONTRACT</span>
@@ -226,7 +226,7 @@ function VerificationContent() {
                 </div>
                 <Button
                   className="w-full h-14 bg-white text-black hover:bg-white/90 text-[11px] font-black uppercase tracking-widest rounded-2xl"
-                  onClick={() => window.open(`https://sepolia.basescan.org/address/${CONTRACT_ADDRESS}`, "_blank")}
+                  onClick={() => window.open(`https://testnet.monadexplorer.com/address/${CONTRACT_ADDRESS}`, "_blank")}
                 >
                   <ExternalLink className="w-4 h-4 mr-3" />
                   VIEW ON BASESCAN
@@ -281,7 +281,7 @@ function VerificationContent() {
           </div>
           <div className="flex items-center gap-10 text-[10px] font-black uppercase tracking-[0.4em]">
             <span>POWERED BY MONARCH</span>
-            <span>BASE SEPOLIA · CHAIN ID 84532</span>
+            <span>MONAD TESTNET · CHAIN ID 10143</span>
           </div>
         </motion.div>
       </div>

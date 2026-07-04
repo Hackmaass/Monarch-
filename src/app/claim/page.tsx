@@ -170,7 +170,7 @@ function ClaimContent() {
               {/* Chain info */}
               <div className="flex items-center gap-3 text-[10px] font-black uppercase tracking-widest text-white/20">
                 <div className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-                Base Sepolia · ERC-721 · Soulbound · UGF Gasless
+                Monad Testnet · ERC-721 · Soulbound · UGF Gasless
               </div>
             </CardContent>
           </Card>
@@ -212,14 +212,14 @@ function ClaimContent() {
                     Certificate Minted!
                   </p>
                   <p className="text-[11px] text-white/40 font-medium mt-1">
-                    Token #{tokenId} · {isDemo ? "Demo mode — no LEARNCERT_PRIVATE_KEY set" : "On-chain · Base Sepolia"}
+                    Token #{tokenId} · {isDemo ? "Demo mode — no LEARNCERT_PRIVATE_KEY set" : "On-chain · Monad Testnet"}
                   </p>
                 </div>
               </div>
 
               {txHash && (
                 <a
-                  href={`https://sepolia.basescan.org/tx/${txHash}`}
+                  href={`https://testnet.monadexplorer.com/tx/${txHash}`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center justify-between w-full p-4 rounded-2xl bg-white/[0.02] border border-white/[0.05] hover:border-white/20 transition-all group"

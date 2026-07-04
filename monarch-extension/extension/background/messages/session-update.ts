@@ -1,6 +1,7 @@
 import type { PlasmoMessaging } from "@plasmohq/messaging"
 import { Storage } from "@plasmohq/storage"
 import type { WatchSession } from "../../types/session"
+import { submitTelemetryToFirebase } from "../../lib/firebase"
 
 const storage = new Storage()
 
@@ -34,7 +35,7 @@ const handler: PlasmoMessaging.MessageHandler = async (req, res) => {
     // Forward to backend if completed
     if (session.isCompleted) {
       console.log("[Monarch] Session completed, forwarding to backend", session.id)
-      // fetch('http://localhost:3001/api/sessions', { ... })
+      await submitTelemetryToFirebase("youtube", session, session.userId)
     }
 
     res.send({ success: true })

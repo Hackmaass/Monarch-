@@ -41,6 +41,7 @@ interface TrackingState {
   isActive: boolean
   isAllowedChannel: boolean
   channelName: string
+  videoTitle: string
   videoId: string | null
   duration: number
   currentTime: number
@@ -57,6 +58,7 @@ const MonarchOverlay = () => {
     isActive: false,
     isAllowedChannel: false,
     channelName: "",
+    videoTitle: "",
     videoId: null,
     duration: 0,
     currentTime: 0,
@@ -99,9 +101,11 @@ const MonarchOverlay = () => {
                          document.querySelector("#channel-name a") ||
                          document.querySelector("ytd-channel-name yt-formatted-string a")
       const channelName = channelEl?.textContent?.trim() || ""
+      const titleEl = document.querySelector("h1.ytd-watch-metadata yt-formatted-string") || document.querySelector("h1.title yt-formatted-string")
+      const videoTitle = titleEl?.textContent?.trim() || document.title.replace(" - YouTube", "")
 
       if (!allowed) {
-        setState(prev => ({ ...prev, isActive: false, isAllowedChannel: false, channelName }))
+        setState(prev => ({ ...prev, isActive: false, isAllowedChannel: false, channelName, videoTitle }))
         return
       }
 
@@ -121,6 +125,7 @@ const MonarchOverlay = () => {
         isActive: true,
         isAllowedChannel: true,
         channelName,
+        videoTitle,
         videoId: new URLSearchParams(window.location.search).get("v"),
         duration,
         currentTime,
@@ -484,6 +489,31 @@ const MonarchOverlay = () => {
                 />
               </div>
             </div>
+
+            {/* Action Area */}
+            {isEligible && (
+              <div style={{ padding: "0 14px 12px" }}>
+                <button
+                  onClick={() => window.open(`http://localhost:3000/quiz/${state.videoId}?title=${encodeURIComponent(state.videoTitle)}`, "_blank")}
+                  style={{
+                    width: "100%",
+                    padding: "10px",
+                    background: "#10b981",
+                    color: "#000",
+                    border: "none",
+                    borderRadius: "8px",
+                    fontSize: "12px",
+                    fontWeight: 900,
+                    letterSpacing: "0.1em",
+                    cursor: "pointer",
+                    textTransform: "uppercase",
+                    boxShadow: "0 0 16px rgba(16,185,129,0.4)"
+                  }}
+                >
+                  Take Quiz
+                </button>
+              </div>
+            )}
 
             {/* Eligibility badge */}
             <div style={{

@@ -12,6 +12,7 @@ import type { Certificate } from "~types/certificate"
 import type { WatchSession } from "~types/session"
 import { calculateScoreBreakdown, computeUniqueCompletionPct } from "~lib/scoring"
 
+
 /** Simple deterministic hash from a string — no ethers needed */
 function simpleSessionHash(input: string): string {
   let hash = 0n
@@ -64,6 +65,10 @@ function IndexPopup() {
     setWalletAddress(trimmed)
     await storage.set(STORAGE_KEYS.WALLET_ADDRESS, trimmed)
   }
+
+
+
+
 
   useEffect(() => {
     const loadSession = async () => {
@@ -221,119 +226,117 @@ function IndexPopup() {
 
         {/* Tabs */}
         <div className="flex px-5 mt-2 gap-4">
-          <button
-            className={`pb-2 text-[10px] font-black uppercase tracking-[0.2em] transition-all duration-300 border-b-2 ${
-              activeTab === "current" 
-                ? "border-white text-white" 
-                : "border-transparent text-white/30 hover:text-white/50"
-            }`}
-            onClick={() => setActiveTab("current")}
-          >
-            Current Session
-          </button>
-          <button
-            className={`pb-2 text-[10px] font-black uppercase tracking-[0.2em] transition-all duration-300 border-b-2 ${
-              activeTab === "analytics" 
-                ? "border-white text-white" 
-                : "border-transparent text-white/30 hover:text-white/50"
-            }`}
-            onClick={() => setActiveTab("analytics")}
-          >
-            Analytics
-          </button>
-        </div>
+              <button
+                className={`pb-2 text-[10px] font-black uppercase tracking-[0.2em] transition-all duration-300 border-b-2 ${
+                  activeTab === "current" 
+                    ? "border-white text-white" 
+                    : "border-transparent text-white/30 hover:text-white/50"
+                }`}
+                onClick={() => setActiveTab("current")}
+              >
+                Current Session
+              </button>
+              <button
+                className={`pb-2 text-[10px] font-black uppercase tracking-[0.2em] transition-all duration-300 border-b-2 ${
+                  activeTab === "analytics" 
+                    ? "border-white text-white" 
+                    : "border-transparent text-white/30 hover:text-white/50"
+                }`}
+                onClick={() => setActiveTab("analytics")}
+              >
+                Analytics
+              </button>
+            </div>
 
-        <div className="flex-1 overflow-y-auto pb-6 scrollbar-hide">
-          {activeTab === "current" ? (
-            <div className="animate-fade-in-up">
-              {!isTracking ? (
-                /* No active session state */
-                <div className="px-5 py-12 text-center animate-fade-in-up">
-                  <div className="w-16 h-16 rounded-2xl mx-auto mb-4 flex items-center justify-center bg-white/[0.03] border border-white/5">
-                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" className="text-white/15">
-                      <rect x="2" y="3" width="20" height="14" rx="2" stroke="currentColor" strokeWidth="1.5" />
-                      <polygon points="10,7 16,10 10,13" fill="currentColor" opacity="0.4" />
-                    </svg>
-                  </div>
-                  <p className="heading-heavy text-white/30 text-[13px] mb-1">NO ACTIVE SESSION</p>
-                  <p className="text-[10px] text-white/20 font-medium leading-relaxed px-6">
-                    Open a YouTube video to begin tracking your learning progress in real-time
-                  </p>
+            <div className="flex-1 overflow-y-auto pb-6 scrollbar-hide">
+              {activeTab === "current" ? (
+                <div className="animate-fade-in-up">
+                  {!isTracking ? (
+                    <div className="px-5 py-12 text-center animate-fade-in-up">
+                      <div className="w-16 h-16 rounded-2xl mx-auto mb-4 flex items-center justify-center bg-white/[0.03] border border-white/5">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" className="text-white/15">
+                          <rect x="2" y="3" width="20" height="14" rx="2" stroke="currentColor" strokeWidth="1.5" />
+                          <polygon points="10,7 16,10 10,13" fill="currentColor" opacity="0.4" />
+                        </svg>
+                      </div>
+                      <p className="heading-heavy text-white/30 text-[13px] mb-1">NO ACTIVE SESSION</p>
+                      <p className="text-[10px] text-white/20 font-medium leading-relaxed px-6">
+                        Open a YouTube video to begin tracking your learning progress in real-time
+                      </p>
+                    </div>
+                  ) : (
+                    <>
+                      {sessionData?.video?.title && (
+                        <div className="px-5 pt-3 pb-1">
+                          <p className="meta-label !text-[7px] opacity-30 mb-1">NOW TRACKING</p>
+                          <p className="text-[11px] font-bold text-white/70 truncate">
+                            {sessionData.video.title}
+                          </p>
+                          <p className="text-[9px] text-white/25 font-medium mt-0.5">
+                            {sessionData.video.channelName}
+                          </p>
+                        </div>
+                      )}
+
+                      <ScorePanel score={currentScore} breakdown={breakdown} />
+                      <EligibilityPanel 
+                        score={currentScore} 
+                        completion={completionPct} 
+                        isEligible={isEligible} 
+                      />
+                      
+                      <div className="px-5 pb-2">
+                        <p className="meta-label opacity-40 mb-2">Your MetaMask Wallet</p>
+                        <div className="flex gap-2">
+                          <input
+                            type="text"
+                            value={walletInput}
+                            onChange={(e) => setWalletInput(e.target.value)}
+                            placeholder="0x..."
+                            className="flex-1 bg-white/5 border border-white/10 rounded-lg px-3 py-2 text-[10px] text-white placeholder-white/20 focus:outline-none focus:border-white/30 font-mono"
+                          />
+                          <button
+                            onClick={handleWalletSave}
+                            className="px-3 py-2 bg-white/10 hover:bg-white/20 rounded-lg text-[9px] font-black text-white uppercase tracking-wider transition-all"
+                          >
+                            Save
+                          </button>
+                        </div>
+                        {walletError && (
+                          <p className="text-[9px] text-rose-400 mt-1">{walletError}</p>
+                        )}
+                        {walletAddress && !walletError && (
+                          <p className="text-[9px] text-emerald-400 mt-1">
+                            {walletAddress.slice(0, 8)}...{walletAddress.slice(-6)} saved
+                          </p>
+                        )}
+                      </div>
+
+                      <MintPanel
+                        isEligible={isEligible}
+                        videoTitle={sessionData?.video?.title || "Unknown Video"}
+                        videoId={sessionData?.video?.videoId || ""}
+                        score={currentScore}
+                        completion={completionPct}
+                        sessionHash={sessionHash}
+                        walletAddress={walletAddress}
+                      />
+                    </>
+                  )}
                 </div>
               ) : (
-                <>
-                  {/* Session title */}
-                  {sessionData?.video?.title && (
-                    <div className="px-5 pt-3 pb-1">
-                      <p className="meta-label !text-[7px] opacity-30 mb-1">NOW TRACKING</p>
-                      <p className="text-[11px] font-bold text-white/70 truncate">
-                        {sessionData.video.title}
-                      </p>
-                      <p className="text-[9px] text-white/25 font-medium mt-0.5">
-                        {sessionData.video.channelName}
-                      </p>
-                    </div>
-                  )}
-
-                  <ScorePanel score={currentScore} breakdown={breakdown} />
-                  <EligibilityPanel 
-                    score={currentScore} 
-                    completion={completionPct} 
-                    isEligible={isEligible} 
+                <div className="animate-fade-in-up">
+                  <AnalyticsPanel
+                    totalWatchTime={totalWatchTime}
+                    videosCompleted={videosCompleted}
+                    averageScore={averageScore}
+                    currentStreak={currentStreak}
+                    dailyActivity={dailyActivity}
+                    sessionHistory={sessionHistory}
                   />
-                  {/* Wallet input */}
-                  <div className="px-5 pb-2">
-                    <p className="meta-label opacity-40 mb-2">Your MetaMask Wallet</p>
-                    <div className="flex gap-2">
-                      <input
-                        type="text"
-                        value={walletInput}
-                        onChange={(e) => setWalletInput(e.target.value)}
-                        placeholder="0x..."
-                        className="flex-1 bg-white/5 border border-white/10 rounded-lg px-3 py-2 text-[10px] text-white placeholder-white/20 focus:outline-none focus:border-white/30 font-mono"
-                      />
-                      <button
-                        onClick={handleWalletSave}
-                        className="px-3 py-2 bg-white/10 hover:bg-white/20 rounded-lg text-[9px] font-black text-white uppercase tracking-wider transition-all"
-                      >
-                        Save
-                      </button>
-                    </div>
-                    {walletError && (
-                      <p className="text-[9px] text-rose-400 mt-1">{walletError}</p>
-                    )}
-                    {walletAddress && !walletError && (
-                      <p className="text-[9px] text-emerald-400 mt-1">
-                        {walletAddress.slice(0, 8)}...{walletAddress.slice(-6)} saved
-                      </p>
-                    )}
-                  </div>
-
-                  <MintPanel
-                    isEligible={isEligible}
-                    videoTitle={sessionData?.video?.title || "Unknown Video"}
-                    videoId={sessionData?.video?.videoId || ""}
-                    score={currentScore}
-                    completion={completionPct}
-                    sessionHash={sessionHash}
-                    walletAddress={walletAddress}
-                  />
-                </>
+                </div>
               )}
             </div>
-          ) : (
-            <div className="animate-fade-in-up">
-              <AnalyticsPanel
-                totalWatchTime={totalWatchTime}
-                videosCompleted={videosCompleted}
-                averageScore={averageScore}
-                currentStreak={currentStreak}
-                dailyActivity={dailyActivity}
-                sessionHistory={sessionHistory}
-              />
-            </div>
-          )}
-        </div>
       </div>
     </div>
   )

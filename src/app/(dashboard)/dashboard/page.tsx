@@ -104,7 +104,7 @@ function DashboardContent() {
             </Badge>
             <div className="flex items-center gap-1.5 text-[10px] font-black uppercase tracking-[0.2em] text-emerald-500">
               <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.5)]" />
-              BASE SEPOLIA
+              MONAD TESTNET
             </div>
           </motion.div>
           <h1 className="text-5xl md:text-7xl font-black tracking-tighter text-white leading-none">
@@ -117,7 +117,7 @@ function DashboardContent() {
         <div className="flex items-center gap-4">
           <div className="text-right hidden sm:block space-y-1">
             <p className="text-[10px] text-white/20 uppercase tracking-[0.3em] font-black">Network</p>
-            <p className="text-sm font-bold text-white tracking-tight">BASE SEPOLIA</p>
+            <p className="text-sm font-bold text-white tracking-tight">MONAD TESTNET</p>
           </div>
           <Button
             variant="outline"
@@ -139,7 +139,7 @@ function DashboardContent() {
         {chainError && (
           <div className="col-span-4 flex items-center gap-3 px-5 py-3 rounded-2xl bg-rose-500/10 border border-rose-500/20 text-rose-400 text-xs font-black uppercase tracking-widest">
             <AlertCircle className="w-4 h-4 shrink-0" />
-            RPC error — could not reach Base Sepolia. Data may be stale.
+            RPC error — could not reach Monad Testnet. Data may be stale.
           </div>
         )}
         <StatsCard
@@ -291,9 +291,9 @@ function DashboardContent() {
                           {mintStatus.status === "error" && "Mint failed"}
                         </h4>
                         <p className="text-xs text-white/40 font-medium leading-relaxed mt-1">
-                          {mintStatus.status === "quoting" && "Calculating transaction quotes on Base Sepolia."}
+                          {mintStatus.status === "quoting" && "Calculating transaction quotes on Monad Testnet."}
                           {mintStatus.status === "settling" && "UGF routing gas fees. ETH is not required."}
-                          {mintStatus.status === "executing" && "Calling smart contract on Base Sepolia."}
+                          {mintStatus.status === "executing" && "Calling smart contract on Monad Testnet."}
                           {mintStatus.status === "confirmed" && "Certificate is fully registered on-chain."}
                           {mintStatus.status === "error" && (mintStatus.error || "UGF remote execution encountered an error.")}
                         </p>
@@ -302,7 +302,7 @@ function DashboardContent() {
                     {mintStatus.txHash && (
                       <div className="p-4 rounded-xl bg-white/[0.02] border border-white/[0.03] space-y-2">
                         <div className="flex justify-between items-center text-[10px] font-black uppercase tracking-[0.2em] text-white/20">
-                          <span>BASE SEPOLIA HASH</span>
+                          <span>MONAD TESTNET HASH</span>
                           <span className="text-emerald-400 font-mono tracking-tighter truncate max-w-[120px]">
                             {mintStatus.txHash}
                           </span>
@@ -317,10 +317,10 @@ function DashboardContent() {
                     )}
                     {mintStatus.status === "confirmed" && (
                       <Button
-                        onClick={() => window.open(`https://sepolia.basescan.org/tx/${mintStatus.txHash}`, "_blank")}
+                        onClick={() => window.open(`https://testnet.monadexplorer.com/tx/${mintStatus.txHash}`, "_blank")}
                         className="w-full bg-white text-black hover:bg-white/90 font-black h-10 rounded-xl text-[10px] tracking-widest uppercase gap-2"
                       >
-                        VIEW ON BASESCAN <ExternalLink className="w-3.5 h-3.5" />
+                        VIEW ON EXPLORER <ExternalLink className="w-3.5 h-3.5" />
                       </Button>
                     )}
                   </CardContent>
@@ -351,7 +351,7 @@ function DashboardContent() {
                     </div>
                     <div className="flex justify-between items-center text-[10px] font-black uppercase tracking-widest text-white/20">
                       <span>NETWORK</span>
-                      <span className="text-emerald-400">BASE SEPOLIA</span>
+                      <span className="text-emerald-400">MONAD TESTNET</span>
                     </div>
                     <div className="flex justify-between items-center text-[10px] font-black uppercase tracking-widest text-white/20">
                       <span>CERTIFICATES</span>
@@ -359,10 +359,10 @@ function DashboardContent() {
                     </div>
                   </div>
                   <Button
-                    onClick={() => window.open(`https://sepolia.basescan.org/address/${wallet}`, "_blank")}
+                    onClick={() => window.open(`https://testnet.monadexplorer.com/address/${wallet}`, "_blank")}
                     className="w-full border border-white/10 bg-white/[0.03] hover:bg-white/[0.05] text-white text-[10px] font-black uppercase tracking-widest h-10 rounded-xl gap-2"
                   >
-                    VIEW ON BASESCAN <ChevronRight className="w-3.5 h-3.5" />
+                    VIEW ON EXPLORER <ChevronRight className="w-3.5 h-3.5" />
                   </Button>
                 </CardContent>
               </Card>

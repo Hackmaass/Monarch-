@@ -233,7 +233,7 @@ export default function CertificateVault() {
 
                     {/* BaseScan link */}
                     <a
-                      href={`https://sepolia.basescan.org/token/${CONTRACT_ADDRESS}?a=${cert.tokenId}`}
+                      href={`https://testnet.monadexplorer.com/token/${CONTRACT_ADDRESS}?a=${cert.tokenId}`}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="flex items-center justify-between p-5 rounded-[24px] bg-white/[0.02] border border-white/[0.03] group-hover:bg-white/[0.05] hover:border-white/10 transition-colors"

@@ -36,7 +36,7 @@ export function RecentSessions({ wallet, certs, loading = false }: RecentSession
       <CardHeader>
         <CardTitle>RECENT CERTIFICATES</CardTitle>
         <CardDescription>
-          Your last 5 on-chain certificates from Base Sepolia.
+          Your last 5 on-chain certificates from Monad Testnet.
         </CardDescription>
       </CardHeader>
       <CardContent>
@@ -117,7 +117,7 @@ export function RecentSessions({ wallet, certs, loading = false }: RecentSession
                     {cert.genuinenessScore}/100
                   </Badge>
                   <a
-                    href={`https://sepolia.basescan.org/nft/${CONTRACT_ADDRESS}/${cert.tokenId}`}
+                    href={`https://testnet.monadexplorer.com/token/${CONTRACT_ADDRESS}?a=${cert.tokenId}`}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="rounded-full p-2.5 text-white/20 hover:bg-white/[0.05] hover:text-white transition-all"

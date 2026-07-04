@@ -7,36 +7,30 @@ const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY || '' });
 
 export async function POST(req: Request) {
   try {
-    const { sessionId } = await req.json();
+    const { sessionId, videoId, videoTitle } = await req.json();
 
-    if (!sessionId) {
-      return NextResponse.json({ error: 'Session ID required' }, { status: 400 });
+    if (!videoId || !videoTitle) {
+      return NextResponse.json({ error: 'videoId and videoTitle required' }, { status: 400 });
     }
 
-    // Fetch session from Firestore
-    const sessionRef = db.collection('sessions').doc(sessionId);
-    const sessionDoc = await sessionRef.get();
+    // Call Gemini to generate a 3-question quiz about the video topic
+    const prompt = `You are an expert technical assessor. 
+The user has just watched a technical tutorial video titled: "${videoTitle}".
 
-    if (!sessionDoc.exists) {
-      return NextResponse.json({ error: 'Session not found' }, { status: 404 });
+Generate a 3-question multiple-choice quiz to test their understanding of the general concepts likely covered in this video.
+Output the quiz in strict JSON format like this:
+{
+  "questions": [
+    {
+      "id": "q1",
+      "question": "What is the primary purpose of...",
+      "options": ["Option A", "Option B", "Option C", "Option D"],
+      "correctAnswer": 0
     }
+  ]
+}
 
-    const session = sessionDoc.data();
-
-    if (!session || !session.codeSnippet) {
-      return NextResponse.json({ error: 'Code snippet not found in session' }, { status: 404 });
-    }
-
-    // Call Gemini to generate a bug in the code
-    const prompt = `You are a ruthless technical assessor. 
-Review the following code snippet. 
-Introduce exactly ONE subtle logical bug (e.g., boundary condition, state mutation). 
-Do NOT introduce syntax errors, the code must still compile/run but produce incorrect results.
-Output the buggy code and a 1-sentence description of the symptom in strict JSON format like this:
-{"buggyCode": "...", "symptom": "..."}
-
-Code Snippet:
-${session.codeSnippet}
+Make the questions challenging but fair. The options should be an array of strings, and correctAnswer should be the index (0-3) of the correct option.
 `;
 
     const response = await ai.models.generateContent({
@@ -55,10 +49,26 @@ ${session.codeSnippet}
 
     const result = JSON.parse(resultText);
 
+    // Store the correct answers in Firestore so we can verify them later in /api/assess/submit
+    // We create a temporary assessment doc
+    const assessmentRef = await db.collection('assessments').add({
+      videoId,
+      videoTitle,
+      createdAt: Date.now(),
+      answers: result.questions.map((q: any) => ({ id: q.id, answer: q.correctAnswer }))
+    });
+
+    // Strip out the correct answers before sending to the client
+    const clientQuiz = result.questions.map((q: any) => ({
+      id: q.id,
+      question: q.question,
+      options: q.options
+    }));
+
     return NextResponse.json({ 
       success: true, 
-      buggyCode: result.buggyCode, 
-      symptom: result.symptom 
+      assessmentId: assessmentRef.id,
+      quiz: clientQuiz 
     }, { status: 200 });
 
   } catch (error) {

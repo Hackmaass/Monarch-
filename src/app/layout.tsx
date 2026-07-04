@@ -21,7 +21,7 @@ const lora = Lora({
 
 export const metadata: Metadata = {
   title: "Monarch | Gasless NFT Certificates for Real Learning",
-  description: "Monarch verifies genuine learning engagement and mints tamper-proof NFT certificates on Base Sepolia — gasless, blockchain-backed, and shareable with recruiters.",
+  description: "Monarch verifies genuine learning engagement and mints tamper-proof NFT certificates on Monad Testnet — gasless, blockchain-backed, and shareable with recruiters.",
 };
 
 export default function RootLayout({
